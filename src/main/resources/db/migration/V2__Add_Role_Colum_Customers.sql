@@ -1,0 +1,1 @@
+ALTER TABLE tb_customers ADD COLUMN role VARCHAR(255);

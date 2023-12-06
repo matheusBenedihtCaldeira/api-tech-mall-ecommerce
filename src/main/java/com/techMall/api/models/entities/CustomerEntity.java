@@ -1,5 +1,6 @@
 package com.techMall.api.models.entities;
 
+import com.techMall.api.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +24,5 @@ public class CustomerEntity {
     private AddressEntity address;
     private String cellPhone;
     private String password;
+    private Role role = Role.CUSTOMER;
 }
