@@ -9,5 +9,4 @@ public class ApiTechMallApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiTechMallApplication.class, args);
 	}
-
 }
