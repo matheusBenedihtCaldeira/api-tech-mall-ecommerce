@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/api/v1/register")
@@ -20,6 +23,7 @@ public class RegisterCategoryController {
     @PostMapping(value = "/category")
     public ResponseEntity<CategoryEntity> register(@RequestBody CategoryDTO data){
         CategoryEntity category = service.register(data);
-        return ResponseEntity.ok().body(category);
+        URI uri = ServletUriComponentsBuilder.fromUriString("http://localhost:8080/api/v1/category").path("{id}").buildAndExpand(category.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
