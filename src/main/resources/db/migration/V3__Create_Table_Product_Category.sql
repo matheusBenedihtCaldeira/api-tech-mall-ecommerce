@@ -10,6 +10,7 @@ CREATE TABLE tb_products(
     stock_quantity BIGINT NOT NULL,
     price DOUBLE NOT NULL,
     category_id BIGINT,
+    image VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES tb_categories(id)

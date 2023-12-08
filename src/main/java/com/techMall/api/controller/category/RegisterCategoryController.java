@@ -23,7 +23,7 @@ public class RegisterCategoryController {
     @PostMapping(value = "/category")
     public ResponseEntity<CategoryEntity> register(@RequestBody CategoryDTO data){
         CategoryEntity category = service.register(data);
-        URI uri = ServletUriComponentsBuilder.fromUriString("http://localhost:8080/api/v1/category").path("{id}").buildAndExpand(category.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromUriString("http://localhost:8080/api/v1/category/").path("{id}").buildAndExpand(category.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

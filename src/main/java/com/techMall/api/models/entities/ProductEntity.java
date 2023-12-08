@@ -28,7 +28,7 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
-    private List<String> images = new ArrayList<>();
+    private String image;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
