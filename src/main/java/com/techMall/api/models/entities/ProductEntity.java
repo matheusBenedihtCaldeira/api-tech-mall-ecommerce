@@ -1,5 +1,6 @@
 package com.techMall.api.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class ProductEntity {
     private Double price;
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private CategoryEntity category;
     private String image;
     @CreationTimestamp

@@ -18,7 +18,6 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String categoryName;
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<ProductEntity> products;
 }

@@ -25,10 +25,9 @@ public class RegisterProductService {
     public ProductEntity register(ProductDTO data){
         ProductEntity product = convertDTO(data);
         CategoryEntity category = findCategoryByIdService.findById(data.categoryId());
+        product.setCategory(category);
         category.getProducts().add(product);
-        category.setId(data.categoryId());
         categoryRepository.save(category);
-        product.setCategory(findCategoryByIdService.findById(data.categoryId()));
         return productRepository.save(product);
     }
 
