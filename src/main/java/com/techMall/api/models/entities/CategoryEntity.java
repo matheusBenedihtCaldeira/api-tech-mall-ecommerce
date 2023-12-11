@@ -1,5 +1,6 @@
 package com.techMall.api.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class CategoryEntity {
     private Long id;
     private String categoryName;
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<ProductEntity> products;
 }
