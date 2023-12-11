@@ -17,13 +17,24 @@ public class UpdateCustomerService {
     @Autowired
     private CustomerRepository repository;
 
+    @Autowired
+    private FindCustomerByIdService findCustomerByIdService;
     public CustomerEntity update(CustomerDTO data, Long id){
-        CustomerEntity customerWithDataToUpdate = new CustomerEntity();
-        CustomerEntity customerFromDB = repository.findById(id).get();
-        BeanUtils.copyProperties(data, customerWithDataToUpdate);
-        customerWithDataToUpdate.setId(id);
-        customerWithDataToUpdate.setAddress(customerFromDB.getAddress());
-        BeanUtils.copyProperties(customerWithDataToUpdate, customerFromDB);
-        return repository.save(customerFromDB);
+        CustomerEntity dataToUpdate = convertDTO(data);
+        CustomerEntity dataFromDB = findCustomerByIdService.findCustomerById(id);
+        updateData(dataToUpdate, dataFromDB);
+        return repository.save(dataFromDB);
+    }
+
+    private void updateData(CustomerEntity dataToUpdate, CustomerEntity dataFromDB){
+        dataToUpdate.setId(dataFromDB.getId());
+        dataToUpdate.setAddress(dataFromDB.getAddress());
+        BeanUtils.copyProperties(dataToUpdate, dataFromDB);
+    }
+
+    private CustomerEntity convertDTO(CustomerDTO customerDTO){
+        CustomerEntity customer = new CustomerEntity();
+        BeanUtils.copyProperties(customerDTO, customer);
+        return customer;
     }
 }

@@ -13,12 +13,24 @@ public class UpdateCategoryService {
     @Autowired
     private CategoryRepository repository;
 
+    @Autowired
+    private FindCategoryByIdService findCategoryByIdService;
+
     public CategoryEntity update(CategoryDTO data, Long id){
+        CategoryEntity category = convertDTO(data);
+        CategoryEntity dataFromDb = findCategoryByIdService.findById(id);
+        updateData(category, dataFromDb);
+        return repository.save(dataFromDb);
+    }
+
+    private void updateData(CategoryEntity dataToUpdate, CategoryEntity dataFromDB){
+        dataToUpdate.setId(dataFromDB.getId());
+        BeanUtils.copyProperties(dataToUpdate, dataFromDB);
+    }
+
+    private CategoryEntity convertDTO(CategoryDTO data){
         CategoryEntity category = new CategoryEntity();
-        CategoryEntity categoryFromDb = repository.findById(id).get();
         BeanUtils.copyProperties(data, category);
-        category.setId(id);
-        BeanUtils.copyProperties(category, categoryFromDb);
-        return repository.save(category);
+        return category;
     }
 }
