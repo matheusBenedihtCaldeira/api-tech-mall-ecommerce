@@ -26,8 +26,6 @@ public class RegisterProductService {
         ProductEntity product = convertDTO(data);
         CategoryEntity category = findCategoryByIdService.findById(data.categoryId());
         product.setCategory(category);
-        category.getProducts().add(product);
-        categoryRepository.save(category);
         return productRepository.save(product);
     }
 
@@ -40,5 +38,4 @@ public class RegisterProductService {
         product.setImage(data.image());
         return product;
     }
-
 }

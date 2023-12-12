@@ -1,6 +1,5 @@
 package com.techMall.api.controller.product;
 
-import com.techMall.api.models.dto.ProductViewResponse;
 import com.techMall.api.models.entities.ProductEntity;
 import com.techMall.api.services.product.IndexProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class IndexProductController {
     private IndexProductService service;
 
     @GetMapping
-    public ResponseEntity<List<ProductViewResponse>> index(){
-        List<ProductViewResponse> products = service.index();
+    public ResponseEntity<List<ProductEntity>> index(){
+        List<ProductEntity> products = service.index();
         return ResponseEntity.ok().body(products);
     }
 }

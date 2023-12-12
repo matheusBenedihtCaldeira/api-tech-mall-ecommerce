@@ -28,7 +28,6 @@ public class ProductEntity {
     private Double price;
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnore
     private CategoryEntity category;
     private String image;
     @CreationTimestamp

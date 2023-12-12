@@ -1,6 +1,5 @@
 package com.techMall.api.controller.product;
 
-import com.techMall.api.models.dto.ProductViewResponse;
 import com.techMall.api.models.entities.ProductEntity;
 import com.techMall.api.services.product.FindProductByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class FindProductByIdController {
     private FindProductByIdService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProductViewResponse> findProductById(@PathVariable Long id){
-        ProductViewResponse product = service.findProductById(id);
+    public ResponseEntity<ProductEntity> findProductById(@PathVariable Long id){
+        ProductEntity product = service.findProductById(id);
         return ResponseEntity.ok().body(product);
     }
 }
