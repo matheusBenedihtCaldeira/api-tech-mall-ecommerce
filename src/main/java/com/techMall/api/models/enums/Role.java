@@ -2,6 +2,7 @@ package com.techMall.api.models.enums;
 
 public enum Role {
     ADMIN("admin"),
+    RESOURCES("resources"),
     OPERATOR("operator"),
     CUSTOMER("customer");
 
