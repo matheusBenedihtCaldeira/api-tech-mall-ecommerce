@@ -20,6 +20,8 @@ public class UserEntity {
     private String lastName;
     @Column(unique = true)
     private String email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity address;
     private String cellPhone;
     private String password;
