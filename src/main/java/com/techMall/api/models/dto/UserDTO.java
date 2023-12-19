@@ -4,5 +4,5 @@ import com.techMall.api.models.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record UserDTO(Long id, @NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, @NotBlank String cellPhone, @NotBlank String password, @NotBlank Role role) {
+public record UserDTO(Long id, @NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, @NotBlank AddressDTO address,@NotBlank String cellPhone, @NotBlank String password, @NotBlank Role role) {
 }

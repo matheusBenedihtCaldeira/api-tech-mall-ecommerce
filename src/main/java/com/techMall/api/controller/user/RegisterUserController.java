@@ -1,9 +1,8 @@
-package com.techMall.api.controller;
+package com.techMall.api.controller.user;
 
 import com.techMall.api.models.dto.UserDTO;
 import com.techMall.api.models.entities.UserEntity;
 import com.techMall.api.services.user.RegisterUserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
