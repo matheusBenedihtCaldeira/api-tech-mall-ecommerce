@@ -18,8 +18,8 @@ public class ReviewEntity {
     private String review;
     private Integer note;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
