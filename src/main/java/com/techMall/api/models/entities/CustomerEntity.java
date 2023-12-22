@@ -24,5 +24,7 @@ public class CustomerEntity {
     private AddressEntity address;
     private String cellPhone;
     private String password;
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private CartEntity cart;
     private Role role = Role.CUSTOMER;
 }
