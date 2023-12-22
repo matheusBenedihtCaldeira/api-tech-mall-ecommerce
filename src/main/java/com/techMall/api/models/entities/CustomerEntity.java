@@ -1,10 +1,12 @@
 package com.techMall.api.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techMall.api.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -12,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerEntity {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
@@ -24,7 +25,8 @@ public class CustomerEntity {
     private AddressEntity address;
     private String cellPhone;
     private String password;
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     private CartEntity cart;
     private Role role = Role.CUSTOMER;
 }

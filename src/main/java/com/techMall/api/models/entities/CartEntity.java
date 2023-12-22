@@ -19,7 +19,7 @@ public class CartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "customer_id", unique = true)
+    @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItems> cartItems = new ArrayList<>();
