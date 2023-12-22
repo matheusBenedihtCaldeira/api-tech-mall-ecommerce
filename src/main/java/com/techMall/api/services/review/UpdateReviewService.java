@@ -1,6 +1,6 @@
 package com.techMall.api.services.review;
 
-import com.techMall.api.models.dto.UpdateReviewRequest;
+import com.techMall.api.models.requests.UpdateReviewRequest;
 import com.techMall.api.models.entities.ReviewEntity;
 import com.techMall.api.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
