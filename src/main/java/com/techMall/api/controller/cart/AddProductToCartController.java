@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/addProduct")
+@RequestMapping(value = "/api/v1/cart")
 public class AddProductToCartController {
 
     @Autowired
     private AddProductToCartService service;
 
-    @PostMapping(value = "/{id}")
+    @PostMapping(value = "/add/product/{id}")
     public ResponseEntity<CartEntity> addProductToCard(@PathVariable Long id, @RequestBody AddProductToCartRequest data){
         CartEntity cart = service.addProductToCart(id, data);
         return ResponseEntity.ok().body(cart);
