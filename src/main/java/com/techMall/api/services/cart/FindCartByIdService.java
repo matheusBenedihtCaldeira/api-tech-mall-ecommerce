@@ -12,7 +12,6 @@ public class FindCartByIdService {
     private CartRepository repository;
 
     public CartEntity findCartById(Long id){
-
         CartEntity cart = repository.findById(id).get();
         return cart;
     }

@@ -22,6 +22,6 @@ public class CartEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private List<CartItems> cartItems = new ArrayList<>();
+    private List<CartItemEntity> cartItems = new ArrayList<>();
     private Double totalPrice;
 }

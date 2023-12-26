@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_cart_items")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartItems {
+public class CartItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

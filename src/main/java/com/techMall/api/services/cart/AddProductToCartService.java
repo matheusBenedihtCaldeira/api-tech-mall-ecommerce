@@ -1,7 +1,7 @@
 package com.techMall.api.services.cart;
 
 import com.techMall.api.models.entities.CartEntity;
-import com.techMall.api.models.entities.CartItems;
+import com.techMall.api.models.entities.CartItemEntity;
 import com.techMall.api.models.entities.ProductEntity;
 import com.techMall.api.models.requests.AddProductToCartRequest;
 import com.techMall.api.repositories.CartItemsRepository;
@@ -28,18 +28,17 @@ public class AddProductToCartService {
     public CartEntity addProductToCart(Long id, AddProductToCartRequest data){
         CartEntity cart = findCartByIdService.findCartById(id);
         ProductEntity product = findProductByIdService.findProductById(data.productId());
-        CartItems cartItems = addCartItem(cart, product, data.quantity());
-        cart.getCartItems().add(cartItems);
+        CartItemEntity cartItemEntity = addCartItem(cart, product, data.quantity());
+        cart.getCartItems().add(cartItemEntity);
         return repository.save(cart);
     }
 
-    private CartItems addCartItem(CartEntity cart, ProductEntity product, Integer quantity){
-        CartItems cartItems = new CartItems();
-        cartItems.setCart(cart);
-        cartItems.setProduct(product);
-        cartItems.setQuantity(quantity);
-        cartItemsRepository.save(cartItems);
-        return cartItems;
+    private CartItemEntity addCartItem(CartEntity cart, ProductEntity product, Integer quantity){
+        CartItemEntity cartItemEntity = new CartItemEntity();
+        cartItemEntity.setCart(cart);
+        cartItemEntity.setProduct(product);
+        cartItemEntity.setQuantity(quantity);
+        cartItemsRepository.save(cartItemEntity);
+        return cartItemEntity;
     }
-
 }
