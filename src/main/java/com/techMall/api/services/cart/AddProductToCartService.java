@@ -28,13 +28,18 @@ public class AddProductToCartService {
     public CartEntity addProductToCart(Long id, AddProductToCartRequest data){
         CartEntity cart = findCartByIdService.findCartById(id);
         ProductEntity product = findProductByIdService.findProductById(data.productId());
+        CartItems cartItems = addCartItem(cart, product, data.quantity());
+        cart.getCartItems().add(cartItems);
+        return repository.save(cart);
+    }
+
+    private CartItems addCartItem(CartEntity cart, ProductEntity product, Integer quantity){
         CartItems cartItems = new CartItems();
         cartItems.setCart(cart);
         cartItems.setProduct(product);
-        cartItems.setQuantity(data.quantity());
+        cartItems.setQuantity(quantity);
         cartItemsRepository.save(cartItems);
-        cart.getCartItems().add(cartItems);
-        return repository.save(cart);
+        return cartItems;
     }
 
 }
