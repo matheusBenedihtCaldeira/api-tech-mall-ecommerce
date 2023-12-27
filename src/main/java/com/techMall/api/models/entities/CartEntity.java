@@ -24,4 +24,13 @@ public class CartEntity {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItemEntity> cartItems = new ArrayList<>();
     private Double totalPrice;
+
+    public void calculateTotalPrice(){
+        double total = 0.0;
+
+        for(CartItemEntity cartItem : cartItems){
+            total += cartItem.getProduct().getPrice() * cartItem.getQuantity();
+        }
+        this.totalPrice = total;
+    }
 }

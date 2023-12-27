@@ -30,6 +30,7 @@ public class AddProductToCartService {
         ProductEntity product = findProductByIdService.findProductById(data.productId());
         CartItemEntity cartItemEntity = addCartItem(cart, product, data.quantity());
         cart.getCartItems().add(cartItemEntity);
+        cart.calculateTotalPrice();
         return repository.save(cart);
     }
 

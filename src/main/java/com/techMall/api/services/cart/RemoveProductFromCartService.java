@@ -3,6 +3,7 @@ package com.techMall.api.services.cart;
 import com.techMall.api.models.entities.CartEntity;
 import com.techMall.api.models.entities.CartItemEntity;
 import com.techMall.api.models.requests.RemoveProductFromCartRequest;
+import com.techMall.api.repositories.CartRepository;
 import com.techMall.api.services.cartItems.DeleteCartItemService;
 import com.techMall.api.services.cartItems.FindCartItemByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class RemoveProductFromCartService {
     private FindCartByIdService findCartByIdService;
 
     @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
     private FindCartItemByIdService findCartItemByIdService;
 
     @Autowired
@@ -24,6 +28,9 @@ public class RemoveProductFromCartService {
         CartEntity cart = findCartByIdService.findCartById(cartId);
         CartItemEntity cartItem = findCartItemByIdService.findCartItemById(data.productId());
         cart.getCartItems().remove(cartItem);
+        cart.calculateTotalPrice();
         deleteCartItemService.delete(data.productId());
+        System.out.println(cart.getCartItems().size());
+        cartRepository.save(cart);
     }
 }
