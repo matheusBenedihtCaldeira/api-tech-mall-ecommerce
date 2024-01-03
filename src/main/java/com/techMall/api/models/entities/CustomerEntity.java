@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "tb_customers")
@@ -28,5 +31,7 @@ public class CustomerEntity {
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private CartEntity cart;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<OrderEntity> orders = new ArrayList<>();
     private Role role = Role.CUSTOMER;
 }
